@@ -96,8 +96,12 @@ ecommerce-project/
 
 - **Build Command**: `npm run build`
 - **Publish Directory**: `out`
-- **Node Version**: 18
+- **Node Version**: 20 (required for Next.js 16)
 - **Framework**: Next.js with static export
+
+## ⚠️ Important Node.js Version Note
+
+Next.js 16 requires Node.js version ">=20.9.0". The `netlify.toml` file is configured to use Node.js 20 to ensure compatibility.
 
 ## 📞 Contact Information
 
