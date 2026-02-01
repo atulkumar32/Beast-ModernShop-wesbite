@@ -53,3 +53,86 @@
   @include flex-column;
   gap: 2rem;
 }
+
+// Contact CTA Section
+.contact-cta {
+  margin-top: 4rem;
+  padding: 3rem 0;
+  background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+  border-radius: 1rem;
+  text-align: center;
+  color: white;
+
+  @include mobile {
+    margin-top: 2rem;
+    padding: 2rem 1rem;
+  }
+}
+
+.contact-cta-content {
+  max-width: 600px;
+  margin: 0 auto;
+
+  h2 {
+    @include heading(2rem, 700);
+    margin-bottom: 1rem;
+    color: white;
+
+    @include mobile {
+      font-size: 1.5rem;
+    }
+  }
+
+  p {
+    @include font(1.125rem, 400, 1.6);
+    margin-bottom: 2rem;
+    opacity: 0.9;
+
+    @include mobile {
+      font-size: 1rem;
+    }
+  }
+}
+
+.contact-cta-buttons {
+  @include flex(center, center);
+  gap: 1rem;
+  flex-wrap: wrap;
+
+  .btn {
+    padding: 0.875rem 2rem;
+    border-radius: 0.5rem;
+    font-weight: 600;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    border: 2px solid transparent;
+
+    &.btn-primary {
+      background: white;
+      color: var(--primary-color);
+      border-color: white;
+
+      &:hover {
+        background: transparent;
+        color: white;
+        border-color: white;
+      }
+    }
+
+    &.btn-outline {
+      background: transparent;
+      color: white;
+      border-color: white;
+
+      &:hover {
+        background: white;
+        color: var(--primary-color);
+      }
+    }
+
+    @include mobile {
+      padding: 0.75rem 1.5rem;
+      font-size: 0.9rem;
+    }
+  }
+}
