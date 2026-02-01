@@ -1,28 +1,31 @@
-# 🔧 Netlify Build Fix - Node.js Version Compatibility
+# 🔧 Netlify Build Fix - Node.js Version Requirement
 
 ## ❌ Problem
-Netlify build failed due to Node.js version compatibility issues with the project dependencies.
+Netlify build failed with error:
+```
+You are using Node.js 18.20.8. For Next.js, Node.js version ">=20.9.0" is required.
+```
 
-## ✅ Solution Applied
+## ✅ Final Solution Applied
 
-### 1. Updated `netlify.toml`
-Reverted to Node.js 18 for better compatibility:
+### 1. Updated `.nvmrc`
+Set to the minimum required version:
+```
+20.9.0
+```
+
+### 2. Updated `netlify.toml`
+Set NODE_VERSION to match Next.js requirement:
 ```toml
 [build.environment]
-  NODE_VERSION = "18"
-```
-
-### 2. Created `.nvmrc` file
-Added Node version specification:
-```
-18
+  NODE_VERSION = "20.9.0"
 ```
 
 ### 3. Updated `package.json`
-Updated engines specification:
+Ensured engines specification matches:
 ```json
 "engines": {
-  "node": ">=18.0.0"
+  "node": ">=20.9.0"
 }
 ```
 
@@ -31,34 +34,34 @@ Updated engines specification:
 1. **Commit and push the changes**:
    ```bash
    git add .
-   git commit -m "Fix: Use Node.js 18 for better Netlify compatibility"
+   git commit -m "Fix: Update to Node.js 20.9.0 for Next.js 16 compatibility"
    git push origin main
    ```
 
-2. **Redeploy on Netlify**:
-   - Netlify will automatically detect the changes
-   - The build should now succeed with Node.js 18
+2. **Clear cache and redeploy on Netlify**:
+   - Go to Netlify dashboard → Deploys → Trigger deploy → Clear cache and deploy
+   - This ensures the new Node.js version is used
 
 ## 📋 What Changed
 
-- ✅ `netlify.toml`: NODE_VERSION = "18"
-- ✅ `.nvmrc`: Created with "18"
-- ✅ `package.json`: Updated engines to ">=18.0.0"
+- ✅ `.nvmrc`: Set to "20.9.0"
+- ✅ `netlify.toml`: NODE_VERSION = "20.9.0"
+- ✅ `package.json`: engines ">=20.9.0"
 
 ## 🎯 Expected Result
 
 The next Netlify build should:
-- Use Node.js 18.x (more stable for this project)
-- Successfully build Next.js 16
-- Deploy your static site to the `out` directory
+- Use Node.js 20.9.0 (meets Next.js 16 requirement)
+- Successfully build and deploy
+- Generate static files in the `out` directory
 
-## 📝 Why Node.js 18?
+## 📝 Why Node.js 20.9.0?
 
-While Next.js 16 technically supports Node.js 20+, using Node.js 18 provides:
-- Better compatibility with current dependencies
-- More stable build environment on Netlify
-- Proven track record with this project setup
+Next.js 16 has a hard requirement for Node.js >=20.9.0. Using exactly 20.9.0 ensures:
+- Meets the minimum requirement
+- Stable and tested version
+- Consistent across all environments
 
 ---
 
-**This fix ensures stable deployment on Netlify's build environment.**
+**This fix addresses the exact Node.js version requirement for Next.js 16.**
