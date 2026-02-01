@@ -1,0 +1,408 @@
+@import '../../../../../styles/variables';
+@import '../../../../../styles/mixins';
+
+.payment-form {
+  background: var(--bg-secondary);
+  border-radius: var(--border-radius-lg);
+  padding: 30px;
+  box-shadow: var(--shadow-card);
+
+  &-header {
+    margin-bottom: 30px;
+    text-align: center;
+
+    h2 {
+      font-size: 1.8rem;
+      font-weight: 600;
+      color: var(--text-primary);
+      margin-bottom: 10px;
+    }
+
+    p {
+      color: var(--text-secondary);
+      font-size: 1rem;
+    }
+  }
+
+  &-content {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  &-actions {
+    display: flex;
+    gap: 15px;
+    margin-top: 30px;
+    padding-top: 20px;
+    border-top: 1px solid var(--border-color);
+
+    @include mobile {
+      flex-direction: column;
+    }
+
+    .btn {
+      flex: 1;
+      padding: 15px 30px;
+      font-size: 1rem;
+      font-weight: 600;
+
+      @include mobile {
+        width: 100%;
+      }
+    }
+  }
+}
+
+.payment-methods {
+  margin-bottom: 30px;
+}
+
+.payment-method-tabs {
+  display: flex;
+  gap: 10px;
+  background: var(--bg-primary);
+  padding: 5px;
+  border-radius: var(--border-radius);
+  border: 1px solid var(--border-color);
+
+  @include mobile {
+    flex-direction: column;
+    gap: 5px;
+  }
+}
+
+.payment-tab {
+  flex: 1;
+  padding: 12px 16px;
+  border-radius: var(--border-radius);
+  background: transparent;
+  color: var(--text-secondary);
+  font-weight: 500;
+  transition: all 0.3s ease;
+  cursor: pointer;
+
+  &:hover {
+    background: var(--bg-tertiary);
+    color: var(--text-primary);
+  }
+
+  &.active {
+    background: var(--primary-color);
+    color: white;
+    font-weight: 600;
+  }
+
+  @include mobile {
+    text-align: center;
+  }
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+
+  @include mobile {
+    grid-template-columns: 1fr;
+    gap: 15px;
+  }
+
+  &:has(.form-group:nth-child(3)) {
+    grid-template-columns: 1fr 1fr 1fr;
+
+    @include tablet {
+      grid-template-columns: 1fr 1fr;
+    }
+
+    @include mobile {
+      grid-template-columns: 1fr;
+    }
+  }
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+
+  label {
+    font-weight: 600;
+    color: var(--text-primary);
+    font-size: 0.95rem;
+  }
+
+  input {
+    padding: 12px 16px;
+    border: 2px solid var(--border-color);
+    border-radius: var(--border-radius);
+    background: var(--bg-primary);
+    color: var(--text-primary);
+    font-size: 1rem;
+    transition: all 0.3s ease;
+
+    &:focus {
+      border-color: var(--primary-color);
+      box-shadow: 0 0 0 3px rgba(var(--primary-rgb), 0.1);
+      outline: none;
+    }
+
+    &.error {
+      border-color: var(--error-color);
+      box-shadow: 0 0 0 3px rgba(var(--error-rgb), 0.1);
+    }
+
+    &::placeholder {
+      color: var(--text-muted);
+    }
+  }
+
+  .error-message {
+    color: var(--error-color);
+    font-size: 0.875rem;
+    font-weight: 500;
+  }
+
+  &.checkbox-group {
+    margin-top: 10px;
+  }
+}
+
+.card-input-wrapper {
+  position: relative;
+
+  .card-icon {
+    position: absolute;
+    right: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 32px;
+    height: 20px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+
+    &.visa {
+      background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 16"><rect width="24" height="16" rx="2" fill="%231a1f71"/><text x="12" y="10" text-anchor="middle" fill="white" font-family="Arial" font-size="6" font-weight="bold">VISA</text></svg>');
+    }
+
+    &.mastercard {
+      background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 16"><rect width="24" height="16" rx="2" fill="%23eb001b"/><circle cx="9" cy="8" r="4" fill="%23ff5f00"/><circle cx="15" cy="8" r="4" fill="%23f79e1b"/></svg>');
+    }
+
+    &.amex {
+      background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 16"><rect width="24" height="16" rx="2" fill="%23006fcf"/><text x="12" y="10" text-anchor="middle" fill="white" font-family="Arial" font-size="5" font-weight="bold">AMEX</text></svg>');
+    }
+
+    &.card {
+      background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 16"><rect width="24" height="16" rx="2" fill="%23666" stroke="%23999"/><rect x="2" y="4" width="20" height="2" fill="%23999"/></svg>');
+    }
+  }
+}
+
+.checkbox-label {
+  @include flex-center;
+  justify-content: flex-start;
+  gap: 12px;
+  cursor: pointer;
+  font-weight: 500;
+  color: var(--text-primary);
+
+  input[type="checkbox"] {
+    display: none;
+  }
+
+  .checkmark {
+    width: 20px;
+    height: 20px;
+    border: 2px solid var(--border-color);
+    border-radius: 4px;
+    background: var(--bg-primary);
+    position: relative;
+    transition: all 0.3s ease;
+
+    &::after {
+      content: '';
+      position: absolute;
+      left: 6px;
+      top: 2px;
+      width: 6px;
+      height: 10px;
+      border: solid white;
+      border-width: 0 2px 2px 0;
+      transform: rotate(45deg);
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+  }
+
+  input[type="checkbox"]:checked + .checkmark {
+    background: var(--primary-color);
+    border-color: var(--primary-color);
+
+    &::after {
+      opacity: 1;
+    }
+  }
+
+  &:hover .checkmark {
+    border-color: var(--primary-color);
+  }
+}
+
+.billing-address {
+  background: var(--bg-primary);
+  padding: 20px;
+  border-radius: var(--border-radius);
+  border: 1px solid var(--border-color);
+  margin-top: 10px;
+
+  h4 {
+    margin: 0 0 15px 0;
+    color: var(--text-primary);
+    font-size: 1.1rem;
+    font-weight: 600;
+  }
+
+  .form-group {
+    margin-bottom: 15px;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+}
+
+.alternative-payment {
+  text-align: center;
+  padding: 30px;
+  background: var(--bg-primary);
+  border-radius: var(--border-radius);
+  border: 1px solid var(--border-color);
+
+  .payment-info {
+    margin-bottom: 25px;
+
+    h4 {
+      font-size: 1.3rem;
+      font-weight: 600;
+      color: var(--text-primary);
+      margin-bottom: 10px;
+    }
+
+    p {
+      color: var(--text-secondary);
+      font-size: 1rem;
+    }
+  }
+
+  .btn-paypal {
+    background: #0070ba;
+    color: white;
+    padding: 15px 40px;
+    border-radius: var(--border-radius);
+    font-size: 1.1rem;
+    font-weight: 600;
+    transition: all 0.3s ease;
+
+    &:hover {
+      background: #005ea6;
+      transform: translateY(-2px);
+    }
+  }
+
+  .btn-apple-pay {
+    background: #000;
+    color: white;
+    padding: 15px 40px;
+    border-radius: var(--border-radius);
+    font-size: 1.1rem;
+    font-weight: 600;
+    transition: all 0.3s ease;
+
+    &:hover {
+      background: #333;
+      transform: translateY(-2px);
+    }
+  }
+}
+
+// Responsive adjustments
+@include tablet {
+  .payment-form {
+    padding: 25px;
+
+    &-header h2 {
+      font-size: 1.6rem;
+    }
+  }
+}
+
+@include mobile {
+  .payment-form {
+    padding: 20px;
+
+    &-header {
+      margin-bottom: 25px;
+
+      h2 {
+        font-size: 1.4rem;
+      }
+
+      p {
+        font-size: 0.9rem;
+      }
+    }
+
+    &-content {
+      gap: 15px;
+    }
+
+    &-actions {
+      margin-top: 25px;
+      padding-top: 15px;
+    }
+  }
+
+  .payment-methods {
+    margin-bottom: 25px;
+  }
+
+  .form-group {
+    input {
+      padding: 10px 14px;
+      font-size: 0.95rem;
+    }
+  }
+
+  .billing-address {
+    padding: 15px;
+
+    h4 {
+      font-size: 1rem;
+      margin-bottom: 12px;
+    }
+  }
+
+  .alternative-payment {
+    padding: 25px;
+
+    .payment-info {
+      margin-bottom: 20px;
+
+      h4 {
+        font-size: 1.2rem;
+      }
+
+      p {
+        font-size: 0.9rem;
+      }
+    }
+
+    .btn-paypal,
+    .btn-apple-pay {
+      padding: 12px 30px;
+      font-size: 1rem;
+    }
+  }
+}

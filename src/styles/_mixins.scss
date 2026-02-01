@@ -1,0 +1,381 @@
+// Responsive Breakpoints
+@mixin mobile {
+  @media (max-width: 639px) {
+    @content;
+  }
+}
+
+@mixin tablet {
+  @media (max-width: 1023px) {
+    @content;
+  }
+}
+
+@mixin desktop {
+  @media (min-width: 1024px) {
+    @content;
+  }
+}
+
+@mixin wide {
+  @media (min-width: 1280px) {
+    @content;
+  }
+}
+
+@mixin ultrawide {
+  @media (min-width: 1536px) {
+    @content;
+  }
+}
+
+// Custom breakpoint
+@mixin breakpoint($size) {
+  @media (max-width: $size) {
+    @content;
+  }
+}
+
+@mixin min-breakpoint($size) {
+  @media (min-width: $size) {
+    @content;
+  }
+}
+
+// Flexbox Mixins
+@mixin flex($direction: row, $justify: flex-start, $align: stretch, $wrap: nowrap) {
+  display: flex;
+  flex-direction: $direction;
+  justify-content: $justify;
+  align-items: $align;
+  flex-wrap: $wrap;
+}
+
+@mixin flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@mixin flex-between {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+@mixin flex-around {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+@mixin flex-column {
+  display: flex;
+  flex-direction: column;
+}
+
+@mixin flex-column-center {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+// Grid Mixins
+@mixin grid($columns: 1fr, $rows: auto, $gap: 1rem) {
+  display: grid;
+  grid-template-columns: $columns;
+  grid-template-rows: $rows;
+  gap: $gap;
+}
+
+@mixin grid-center {
+  display: grid;
+  place-items: center;
+}
+
+@mixin grid-responsive($mobile: 1, $tablet: 2, $desktop: 3) {
+  display: grid;
+  gap: 1.5rem;
+  grid-template-columns: repeat($mobile, 1fr);
+
+  @include tablet {
+    grid-template-columns: repeat($tablet, 1fr);
+  }
+
+  @include desktop {
+    grid-template-columns: repeat($desktop, 1fr);
+  }
+}
+
+// Position Mixins
+@mixin absolute($top: null, $right: null, $bottom: null, $left: null) {
+  position: absolute;
+  top: $top;
+  right: $right;
+  bottom: $bottom;
+  left: $left;
+}
+
+@mixin fixed($top: null, $right: null, $bottom: null, $left: null) {
+  position: fixed;
+  top: $top;
+  right: $right;
+  bottom: $bottom;
+  left: $left;
+}
+
+@mixin relative {
+  position: relative;
+}
+
+@mixin sticky($top: 0) {
+  position: sticky;
+  top: $top;
+}
+
+// Size Mixins
+@mixin size($width, $height: $width) {
+  width: $width;
+  height: $height;
+}
+
+@mixin square($size) {
+  @include size($size);
+}
+
+@mixin circle($size) {
+  @include size($size);
+  border-radius: 50%;
+}
+
+// Typography Mixins
+@mixin font($size: 1rem, $weight: 400, $line-height: 1.5) {
+  font-size: $size;
+  font-weight: $weight;
+  line-height: $line-height;
+}
+
+@mixin heading($size: 2rem, $weight: 700, $line-height: 1.2) {
+  @include font($size, $weight, $line-height);
+  color: var(--text-primary);
+}
+
+@mixin text-truncate {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+@mixin text-clamp($lines: 2) {
+  display: -webkit-box;
+  -webkit-line-clamp: $lines;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+// Button Mixins
+@mixin button-base {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.75rem 1.5rem;
+  border: none;
+  border-radius: var(--border-radius);
+  font-weight: 600;
+  text-decoration: none;
+  cursor: pointer;
+  transition: all var(--transition-base);
+  user-select: none;
+
+  &:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
+}
+
+@mixin button-variant($bg-color, $text-color: white, $hover-bg: null) {
+  @include button-base;
+  background-color: $bg-color;
+  color: $text-color;
+
+  @if $hover-bg {
+    &:hover:not(:disabled) {
+      background-color: $hover-bg;
+    }
+  } @else {
+    &:hover:not(:disabled) {
+      filter: brightness(1.1);
+      transform: translateY(-1px);
+    }
+  }
+}
+
+// Card Mixins
+@mixin card($padding: 1.5rem, $radius: var(--border-radius-lg)) {
+  background: var(--bg-secondary);
+  border-radius: $radius;
+  padding: $padding;
+  box-shadow: var(--shadow-card);
+  transition: all var(--transition-base);
+}
+
+@mixin card-hover {
+  &:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-hover);
+  }
+}
+
+// Form Mixins
+@mixin input-base {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  border: 1px solid var(--border-color);
+  border-radius: var(--border-radius);
+  background: var(--bg-primary);
+  color: var(--text-primary);
+  font-size: 1rem;
+  transition: all var(--transition-base);
+
+  &:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(var(--primary-rgb), 0.1);
+  }
+
+  &::placeholder {
+    color: var(--text-muted);
+  }
+
+  &:disabled {
+    background: var(--bg-tertiary);
+    cursor: not-allowed;
+  }
+}
+
+// Animation Mixins
+@mixin fade-in($duration: 0.3s, $delay: 0s) {
+  opacity: 0;
+  animation: fadeIn $duration ease-in-out $delay forwards;
+}
+
+@mixin slide-in($direction: up, $distance: 20px, $duration: 0.3s, $delay: 0s) {
+  opacity: 0;
+  
+  @if $direction == up {
+    transform: translateY($distance);
+  } @else if $direction == down {
+    transform: translateY(-$distance);
+  } @else if $direction == left {
+    transform: translateX($distance);
+  } @else if $direction == right {
+    transform: translateX(-$distance);
+  }
+  
+  animation: slideIn#{capitalize($direction)} $duration ease-out $delay forwards;
+}
+
+@mixin scale-in($duration: 0.3s, $delay: 0s) {
+  opacity: 0;
+  transform: scale(0.9);
+  animation: scaleIn $duration ease-out $delay forwards;
+}
+
+// Utility Mixins
+@mixin clearfix {
+  &::after {
+    content: '';
+    display: table;
+    clear: both;
+  }
+}
+
+@mixin visually-hidden {
+  position: absolute !important;
+  width: 1px !important;
+  height: 1px !important;
+  padding: 0 !important;
+  margin: -1px !important;
+  overflow: hidden !important;
+  clip: rect(0, 0, 0, 0) !important;
+  white-space: nowrap !important;
+  border: 0 !important;
+}
+
+@mixin aspect-ratio($width, $height) {
+  position: relative;
+  
+  &::before {
+    content: '';
+    display: block;
+    padding-top: percentage($height / $width);
+  }
+  
+  > * {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
+}
+
+// Scrollbar Mixins
+@mixin custom-scrollbar($width: 8px, $track-color: var(--bg-tertiary), $thumb-color: var(--border-color)) {
+  &::-webkit-scrollbar {
+    width: $width;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: $track-color;
+    border-radius: $width / 2;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: $thumb-color;
+    border-radius: $width / 2;
+
+    &:hover {
+      background: var(--text-muted);
+    }
+  }
+}
+
+@mixin hide-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+// Shadow Mixins
+@mixin shadow($level: 1) {
+  @if $level == 1 {
+    box-shadow: var(--shadow-sm);
+  } @else if $level == 2 {
+    box-shadow: var(--shadow);
+  } @else if $level == 3 {
+    box-shadow: var(--shadow-md);
+  } @else if $level == 4 {
+    box-shadow: var(--shadow-lg);
+  } @else if $level == 5 {
+    box-shadow: var(--shadow-xl);
+  }
+}
+
+// Gradient Mixins
+@mixin gradient($direction: to right, $colors...) {
+  background: linear-gradient($direction, $colors);
+}
+
+@mixin radial-gradient($colors...) {
+  background: radial-gradient(circle, $colors);
+}
+
+// Helper function to capitalize strings
+@function capitalize($string) {
+  @return to-upper-case(str-slice($string, 1, 1)) + str-slice($string, 2);
+}

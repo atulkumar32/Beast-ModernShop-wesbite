@@ -1,0 +1,9 @@
+@import '../../../../../styles/variables';
+@import '../../../../../styles/mixins';
+
+.best-selling-products {
+  &__grid {
+    @include grid-responsive(1, 2, 4);
+    gap: 2rem;
+  }
+}

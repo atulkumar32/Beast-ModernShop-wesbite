@@ -1,0 +1,34 @@
+@import '../../../../../styles/variables';
+@import '../../../../../styles/mixins';
+
+.empty-cart {
+  @include flex-center;
+  min-height: 400px;
+  text-align: center;
+
+  &__content {
+    @include flex-column-center;
+    gap: 2rem;
+    max-width: 400px;
+  }
+
+  &__icon {
+    color: var(--text-muted);
+  }
+
+  &__title {
+    @include heading(2rem, 600);
+    color: var(--text-primary);
+  }
+
+  &__description {
+    @include font(1.125rem, 400, 1.6);
+    color: var(--text-secondary);
+    margin: 0;
+  }
+
+  &__cta {
+    padding: 1rem 2rem;
+    font-size: 1.125rem;
+  }
+}

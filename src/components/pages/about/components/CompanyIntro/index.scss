@@ -1,0 +1,128 @@
+@import '../../../../../styles/variables';
+@import '../../../../../styles/mixins';
+
+.company-intro {
+  padding-top: 2rem;
+  background: linear-gradient(135deg, var(--bg-primary) 0%, var(--bg-secondary) 100%);
+
+  &__content {
+    @include grid(1fr 1fr, 1fr, 4rem);
+    align-items: center;
+
+    @include tablet {
+      grid-template-columns: 1fr;
+      gap: 3rem;
+      text-align: center;
+    }
+  }
+
+  &__text {
+    @include flex-column;
+    gap: 2rem;
+  }
+
+  &__title {
+    @include heading(3rem, 800, 1.1);
+    color: var(--text-primary);
+
+    @include tablet {
+      font-size: 2.5rem;
+    }
+
+    @include mobile {
+      font-size: 2rem;
+    }
+  }
+
+  &__subtitle {
+    @include font(1.25rem, 500, 1.4);
+    color: var(--primary-color);
+  }
+
+  &__description {
+    @include flex-column;
+    gap: 1.5rem;
+
+    p {
+      @include font(1.125rem, 400, 1.7);
+      color: var(--text-secondary);
+    }
+  }
+
+  &__stats {
+    @include flex-center;
+    gap: 2rem;
+    justify-content: flex-start;
+
+    @include tablet {
+      justify-content: center;
+    }
+
+    @include mobile {
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+  }
+
+  &__image {
+    position: relative;
+    @include flex-center;
+
+    @include tablet {
+      order: -1;
+    }
+  }
+}
+
+.intro-image {
+  width: 100%;
+  max-width: 500px;
+  height: 400px;
+  object-fit: cover;
+  border-radius: var(--border-radius-xl);
+  box-shadow: var(--shadow-xl);
+}
+
+.image-overlay {
+  @include absolute(null, null, 2rem, 2rem);
+  background: rgba(255, 255, 255, 0.95);
+  padding: 1.5rem;
+  border-radius: var(--border-radius-lg);
+  box-shadow: var(--shadow-lg);
+  backdrop-filter: blur(10px);
+  max-width: 250px;
+
+  h3 {
+    @include font(1.125rem, 600);
+    color: var(--text-primary);
+    margin-bottom: 0.5rem;
+  }
+
+  p {
+    @include font(0.875rem, 400);
+    color: var(--text-secondary);
+    margin: 0;
+  }
+}
+
+.stat-item {
+  @include flex-column-center;
+  gap: 0.5rem;
+  text-align: center;
+}
+
+.stat-number {
+  @include font(2rem, 700, 1);
+  color: var(--primary-color);
+
+  @include mobile {
+    font-size: 1.75rem;
+  }
+}
+
+.stat-label {
+  @include font(0.875rem, 500);
+  color: var(--text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}

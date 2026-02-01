@@ -1,0 +1,44 @@
+@import '../../../../../styles/variables';
+@import '../../../../../styles/mixins';
+
+.product-search {
+  max-width: 400px;
+  width: 100%;
+
+  @include tablet {
+    max-width: none;
+  }
+}
+
+.search-input-group {
+  position: relative;
+  @include flex;
+}
+
+.search-input {
+  @include input-base;
+  padding-right: 3rem;
+  border-radius: var(--border-radius-full);
+}
+
+.search-btn {
+  @include absolute(50%, 0.75rem, null, null);
+  transform: translateY(-50%);
+  @include flex-center;
+  @include size(2rem);
+  background: var(--primary-color);
+  border: none;
+  border-radius: 50%;
+  color: white;
+  cursor: pointer;
+  transition: all var(--transition-base);
+
+  &:hover {
+    background: var(--primary-dark);
+    transform: translateY(-50%) scale(1.05);
+  }
+
+  svg {
+    @include size(1rem);
+  }
+}

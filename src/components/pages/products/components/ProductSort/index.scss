@@ -1,0 +1,28 @@
+@import '../../../../../styles/variables';
+@import '../../../../../styles/mixins';
+
+.product-sort {
+  @include flex-center;
+  gap: 0.5rem;
+}
+
+.sort-label {
+  @include font(0.875rem, 500);
+  color: var(--text-secondary);
+  white-space: nowrap;
+}
+
+.sort-select {
+  padding: 0.5rem 0.75rem;
+  border: 1px solid var(--border-color);
+  border-radius: var(--border-radius);
+  background: var(--bg-primary);
+  color: var(--text-primary);
+  cursor: pointer;
+  min-width: 180px;
+
+  &:focus {
+    outline: none;
+    border-color: var(--primary-color);
+  }
+}

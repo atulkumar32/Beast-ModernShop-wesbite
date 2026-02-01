@@ -1,0 +1,40 @@
+@import '../../../../../styles/variables';
+@import '../../../../../styles/mixins';
+
+.product-grid {
+  &--grid {
+    @include grid-responsive(1, 2, 3);
+    gap: 2rem;
+  }
+
+  &--list {
+    @include flex-column;
+    gap: 1.5rem;
+  }
+}
+
+.no-products {
+  @include flex-center;
+  min-height: 400px;
+  text-align: center;
+  color: var(--text-muted);
+
+  &-content {
+    @include flex-column-center;
+    gap: 1rem;
+
+    svg {
+      @include size(4rem);
+    }
+
+    h3 {
+      @include font(1.5rem, 600);
+      color: var(--text-primary);
+    }
+
+    p {
+      @include font(1rem, 400);
+      color: var(--text-secondary);
+    }
+  }
+}

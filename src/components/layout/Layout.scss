@@ -1,0 +1,44 @@
+@import '../../styles/variables';
+@import '../../styles/mixins';
+
+.layout {
+  min-height: 100vh;
+  @include flex-column;
+
+  &__main {
+    flex: 1;
+    padding-top: 80px; // Account for fixed header
+    
+    @include tablet {
+      padding-top: 70px;
+    }
+  }
+}
+
+// Page-specific layout classes
+.layout--home {
+  .layout__main {
+    padding-top: 0; // Home page might have hero section
+  }
+}
+
+.layout--fullwidth {
+  .layout__main {
+    padding: 80px 0 0;
+    
+    @include tablet {
+      padding: 70px 0 0;
+    }
+  }
+}
+
+.layout--centered {
+  .layout__main {
+    @include flex-center;
+    min-height: calc(100vh - 80px);
+    
+    @include tablet {
+      min-height: calc(100vh - 70px);
+    }
+  }
+}

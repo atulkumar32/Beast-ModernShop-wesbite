@@ -1,0 +1,80 @@
+@import '../../../../../styles/variables';
+@import '../../../../../styles/mixins';
+
+.developer-info {
+  @include card(2rem);
+  background: var(--primary-gradient);
+  color: white;
+  text-align: center;
+}
+
+.developer-card {
+  @include flex-column-center;
+  gap: 1.5rem;
+}
+
+.developer-avatar {
+  @include size(5rem);
+  border-radius: 50%;
+  overflow: hidden;
+  border: 3px solid rgba(255, 255, 255, 0.3);
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+}
+
+.developer-details {
+  @include flex-column-center;
+  gap: 1rem;
+}
+
+.developer-name {
+  @include font(1.5rem, 600);
+  color: white;
+  margin: 0;
+}
+
+.developer-role {
+  @include font(1rem, 400);
+  color: rgba(255, 255, 255, 0.8);
+  margin: 0;
+}
+
+.developer-contact {
+  @include flex-column;
+  gap: 0.75rem;
+}
+
+.contact-item {
+  @include flex-center;
+  gap: 0.5rem;
+  @include font(0.875rem, 400);
+  color: rgba(255, 255, 255, 0.9);
+
+  svg {
+    flex-shrink: 0;
+  }
+}
+
+.social-links {
+  @include flex-center;
+  gap: 1rem;
+}
+
+.social-link {
+  @include flex-center;
+  @include size(2.5rem);
+  background: rgba(255, 255, 255, 0.2);
+  color: white;
+  border-radius: 50%;
+  text-decoration: none;
+  transition: all var(--transition-base);
+
+  &:hover {
+    background: rgba(255, 255, 255, 0.3);
+    transform: scale(1.1);
+  }
+}

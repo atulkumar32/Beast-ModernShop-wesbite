@@ -1,0 +1,124 @@
+@import '../../../styles/variables';
+@import '../../../styles/mixins';
+
+.auth-page {
+  @include flex-center;
+  min-height: 100vh;
+  padding: 2rem;
+  background: linear-gradient(135deg, var(--bg-primary) 0%, var(--bg-secondary) 100%);
+}
+
+.auth-container {
+  width: 100%;
+  max-width: 500px;
+  background: var(--bg-primary);
+  border-radius: var(--border-radius-xl);
+  box-shadow: var(--shadow-xl);
+  padding: 3rem;
+
+  @include mobile {
+    padding: 2rem;
+    max-width: 400px;
+  }
+}
+
+.auth-header {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.auth-title {
+  @include heading(2rem, 700);
+  color: var(--text-primary);
+  margin-bottom: 0.5rem;
+
+  @include mobile {
+    font-size: 1.75rem;
+  }
+}
+
+.auth-subtitle {
+  @include font(1rem, 400);
+  color: var(--text-secondary);
+  margin: 0;
+}
+
+.auth-form {
+  @include flex-column;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.form-row {
+  @include grid(1fr 1fr, 1fr, 1rem);
+
+  @include mobile {
+    grid-template-columns: 1fr;
+  }
+}
+
+.auth-error {
+  padding: 1rem;
+  background: rgba(var(--error-color), 0.1);
+  border: 1px solid var(--error-color);
+  border-radius: var(--border-radius);
+  color: var(--error-color);
+  text-align: center;
+  font-size: 0.875rem;
+}
+
+.auth-submit {
+  width: 100%;
+  padding: 1rem;
+  font-size: 1rem;
+  margin-top: 0.5rem;
+
+  &.loading {
+    opacity: 0.7;
+    cursor: not-allowed;
+  }
+}
+
+.auth-footer {
+  text-align: center;
+  padding-top: 2rem;
+  border-top: 1px solid var(--border-color);
+
+  p {
+    @include font(0.875rem, 400);
+    color: var(--text-secondary);
+    margin: 0;
+  }
+}
+
+.auth-link {
+  color: var(--primary-color);
+  text-decoration: none;
+  font-weight: 600;
+  transition: color var(--transition-base);
+
+  &:hover {
+    color: var(--primary-dark);
+    text-decoration: underline;
+  }
+}
+
+.demo-credentials {
+  margin-top: 2rem;
+  padding: 1rem;
+  background: var(--bg-secondary);
+  border-radius: var(--border-radius);
+  text-align: center;
+
+  h4 {
+    @include font(0.875rem, 600);
+    color: var(--text-primary);
+    margin-bottom: 0.5rem;
+  }
+
+  p {
+    @include font(0.75rem, 400);
+    color: var(--text-secondary);
+    margin: 0.25rem 0;
+  }
+}

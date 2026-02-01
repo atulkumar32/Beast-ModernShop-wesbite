@@ -1,0 +1,58 @@
+@import '../../../styles/variables';
+@import '../../../styles/mixins';
+
+.cart-page {
+  min-height: 100vh;
+  padding: 2rem 0;
+}
+
+.cart-header {
+  text-align: center;
+  margin-bottom: 3rem;
+  padding-bottom: 2rem;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.cart-title {
+  @include heading(2.5rem, 700);
+  color: var(--text-primary);
+  margin-bottom: 0.5rem;
+
+  @include tablet {
+    font-size: 2rem;
+  }
+
+  @include mobile {
+    font-size: 1.75rem;
+  }
+}
+
+.cart-subtitle {
+  @include font(1.125rem, 400);
+  color: var(--text-secondary);
+  margin: 0;
+}
+
+.cart-content {
+  @include grid(2fr 1fr, 1fr, 3rem);
+
+  @include tablet {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+}
+
+.cart-items-section {
+  @include flex-column;
+  gap: 1.5rem;
+}
+
+.cart-summary-section {
+  position: sticky;
+  top: 100px;
+  height: fit-content;
+
+  @include tablet {
+    position: static;
+  }
+}
