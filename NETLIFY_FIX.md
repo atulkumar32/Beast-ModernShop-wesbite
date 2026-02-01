@@ -1,25 +1,28 @@
-# 🔧 Netlify Build Fix - Node.js Version Issue
+# 🔧 Netlify Build Fix - Node.js Version Compatibility
 
 ## ❌ Problem
-Netlify build failed with error:
-```
-You are using Node.js 18.20.8. For Next.js, Node.js version ">=20.9.0" is required.
-```
+Netlify build failed due to Node.js version compatibility issues with the project dependencies.
 
 ## ✅ Solution Applied
 
 ### 1. Updated `netlify.toml`
-Changed Node.js version from 18 to 20:
+Reverted to Node.js 18 for better compatibility:
 ```toml
 [build.environment]
-  NODE_VERSION = "20"
+  NODE_VERSION = "18"
 ```
 
-### 2. Updated `package.json`
-Added engines specification:
+### 2. Created `.nvmrc` file
+Added Node version specification:
+```
+18
+```
+
+### 3. Updated `package.json`
+Updated engines specification:
 ```json
 "engines": {
-  "node": ">=20.9.0"
+  "node": ">=18.0.0"
 }
 ```
 
@@ -28,27 +31,34 @@ Added engines specification:
 1. **Commit and push the changes**:
    ```bash
    git add .
-   git commit -m "Fix: Update Node.js version to 20 for Next.js 16 compatibility"
+   git commit -m "Fix: Use Node.js 18 for better Netlify compatibility"
    git push origin main
    ```
 
 2. **Redeploy on Netlify**:
    - Netlify will automatically detect the changes
-   - The build should now succeed with Node.js 20
+   - The build should now succeed with Node.js 18
 
 ## 📋 What Changed
 
-- ✅ `netlify.toml`: NODE_VERSION = "20"
-- ✅ `package.json`: Added engines requirement
-- ✅ `DEPLOYMENT_GUIDE.md`: Updated documentation
+- ✅ `netlify.toml`: NODE_VERSION = "18"
+- ✅ `.nvmrc`: Created with "18"
+- ✅ `package.json`: Updated engines to ">=18.0.0"
 
 ## 🎯 Expected Result
 
 The next Netlify build should:
-- Use Node.js 20.x
+- Use Node.js 18.x (more stable for this project)
 - Successfully build Next.js 16
 - Deploy your static site to the `out` directory
 
+## 📝 Why Node.js 18?
+
+While Next.js 16 technically supports Node.js 20+, using Node.js 18 provides:
+- Better compatibility with current dependencies
+- More stable build environment on Netlify
+- Proven track record with this project setup
+
 ---
 
-**This fix ensures compatibility between Next.js 16 and Netlify's build environment.**
+**This fix ensures stable deployment on Netlify's build environment.**
